@@ -8,24 +8,24 @@ from guizero import App, Text
 #logRange = 5.0
 convFactor = 5.0/65536
 efficacy = 0.020 #phototopic efficacy for 770 nm laser is around 0.020 lm/W
-laserD = 3 # dummy variable, get the exact laser D
+area = 3.2*(10**-6) # dummy variable, get the exact laser D
 
 #converts from voltage to lux
-def rawToLux(voltage): 
-	logLux = voltage*convFactor
+def rawToLux(raw): 
+	logLux = raw*convFactor
 	return pow(10, logLux)
 
 #converts from lux to milliwatts
 def luxTomW(lux): 
-	watts = laserD*lux/efficacy
+	watts = area*lux/efficacy
 	return watts*(10**-3)
 
 #converts from voltage to milliwatts
-def rawTomW(voltage): 
-	logLux = voltage*convFactor
+def rawTomW(raw): 
+	logLux = raw*convFactor
 	lux = pow(10, logLux)
-	watts = laserD*lux/efficacy
-	return '%.5f'%(watts*(10**-3))
+	watts = area*lux/efficacy
+	return '%.3f'%(watts*(10**-3))
 
 i = 1
 def update():
