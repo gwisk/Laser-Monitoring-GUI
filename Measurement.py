@@ -1,14 +1,15 @@
-import Adafruit_ADS1x15
 from decimal import Decimal
-import time
 from guizero import App, Text
+import Adafruit_ADS1x15
+import time
 
+adc = Adafruit_ADS1x15.ADS1115()
 
 #rawRange = 65536 #2^16
 #logRange = 5.0
 convFactor = 5.0/65536
-efficacy = 0.020 #phototopic efficacy for 770 nm laser is around 0.020 lm/W
-area = 3.2*(10**-6) # dummy variable, get the exact laser D
+efficacy = 0.020            #phototopic efficacy for 770 nm laser is around 0.020 lm/W
+area = 3.2*(10**-6)         # dummy variable, get the exact laser D
 
 #converts from voltage to lux
 def rawToLux(raw): 
@@ -27,6 +28,10 @@ def rawTomW(raw):
 	watts = area*lux/efficacy
 	return '%.3f'%(watts*(10**-3))
 
+reading1 = adc.read_adc(0)
+
+
+"""
 i = 1
 def update():
 	global i
@@ -35,15 +40,20 @@ def update():
 	i+=1
 	if i > 2:
 		sensor1.text_color="red"
-"""
+
 if abs(sensor1.value) >= range:
 	sensor1.text_color="red"
 if abs(sensor1.value) < range:
 	sensor1.text_color = "green"
 """
 
+def update():
+	sensor1.value = read_adc(0)
+	sensor2.value = read_adc(0)
+
+
 app = App(title="Laser Monitoring", layout="grid")
-sensor1 = Text(app, text=str(rawTomW(0)) + " mW", grid =[0, 0], size =25)
-sensor2 = Text(app, text=str(rawTomW(0)) + " mW", grid = [0, 1], size = 25)
+sensor1 = Text(app, text=str(reading1) + " mW", grid =[0, 0], size =25)
+sensor2 = Text(app, text=str(reading1) + " mW", grid = [0, 1], size = 25)
 sensor1.repeat(1000, update)
 app.display()
