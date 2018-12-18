@@ -48,8 +48,8 @@ if abs(sensor1.value) < range:
 """
 
 def update():
-	sensor1.value = read_adc(0)
-	sensor2.value = read_adc(0)
+	sensor1.value = read_adc(0) + " mW"
+	sensor2.value = read_adc(0) + " mW"
 
 
 app = App(title="Laser Monitoring", layout="grid")
