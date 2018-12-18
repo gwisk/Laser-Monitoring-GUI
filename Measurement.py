@@ -29,7 +29,7 @@ def rawTomW(raw):
 	return '%.3f'%(watts*(10**-3))
 
 reading1 = adc.read_adc(0)
-
+reading2 = adc.read_adc(0)
 
 """
 i = 1
