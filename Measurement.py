@@ -19,7 +19,7 @@ def rawToLux(raw):
 #converts from lux to milliwatts
 def luxTomW(lux): 
 	watts = area*lux/efficacy
-	return watts*(10**-3)
+	return watts*(10**3)
 
 #converts from voltage to milliwatts
 def rawTomW(raw): 
@@ -48,12 +48,12 @@ if abs(sensor1.value) < range:
 """
 
 def update():
-	sensor1.value = read_adc(0) + " mW"
+	sensor1.value = read_adc(0) + " raw"
 	sensor2.value = read_adc(0) + " mW"
 
 
 app = App(title="Laser Monitoring", layout="grid")
-sensor1 = Text(app, text=str(reading1) + " mW", grid =[0, 0], size =25)
+sensor1 = Text(app, text=str(reading1) + " raw", grid =[0, 0], size =25)
 sensor2 = Text(app, text=str(reading1) + " mW", grid = [0, 1], size =25)
 sensor1.repeat(1000, update)
 app.display()
