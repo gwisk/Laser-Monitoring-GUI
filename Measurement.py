@@ -26,7 +26,7 @@ def rawTomW(raw):
 	logLux = raw*convFactor
 	lux = pow(10, logLux)
 	watts = area*lux/efficacy
-	return '%.3f'%(watts*(10**-3))
+	return '%.3f'%(watts*(10**3))
 
 reading1 = adc.read_adc(0)
 reading2 = adc.read_adc(0)
@@ -54,6 +54,6 @@ def update():
 
 app = App(title="Laser Monitoring", layout="grid")
 sensor1 = Text(app, text=str(reading1) + " mW", grid =[0, 0], size =25)
-sensor2 = Text(app, text=str(reading1) + " mW", grid = [0, 1], size = 25)
+sensor2 = Text(app, text=str(reading1) + " mW", grid = [0, 1], size =25)
 sensor1.repeat(1000, update)
 app.display()
