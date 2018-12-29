@@ -25,7 +25,7 @@ def luxTomW(lux):
 def rawTomW(raw): 
 	logLux = raw*convFactor
 	lux = pow(10, logLux)
-	watts = area*lux/efficacy
+	watts = (area*lux)/efficacy
 	return '%.3f'%(watts*(10**3))
 
 reading1 = adc.read_adc(0)
