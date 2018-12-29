@@ -8,7 +8,7 @@ adc = Adafruit_ADS1x15.ADS1115()
 #rawRange = 65536 #2^16
 #logRange = 5.0
 convFactor = 5.0/65536
-efficacy = 0.020            #phototopic efficacy for 770 nm laser is around 0.020 lm/W
+efficacy = 0.02049            #phototopic efficacy for 770 nm laser is around 0.020 lm/W http://www.kayelaby.npl.co.uk/general_physics/2_5/2_5_3.html
 area = 3.2*(10**-6)         # dummy variable, get the exact laser D
 
 #converts from voltage to lux
