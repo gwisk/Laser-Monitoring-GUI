@@ -5,10 +5,8 @@ import time
 
 adc = Adafruit_ADS1x15.ADS1115()
 
-#rawRange = 65536 #2^16
-#logRange = 5.0
 convFactor = 5.0/65536
-efficacy = 0.02049            #phototopic efficacy for 770 nm laser is around 0.020 lm/W http://www.kayelaby.npl.co.uk/general_physics/2_5/2_5_3.html
+efficacy = 21.856            #phototopic efficacy for 671 nm laser is around 0.020 lm/W http://www.kayelaby.npl.co.uk/general_physics/2_5/2_5_3.html
 area = 3.2*(10**-6)         # dummy variable, get the exact laser D
 
 #converts from voltage to lux
@@ -23,7 +21,7 @@ def luxTomW(lux):
 
 #converts from voltage to milliwatts
 def rawTomW(raw): 
-	logLux = raw*convFactor
+	#logLux = raw*convFactor
 	lux = pow(10, logLux)
 	watts = (area*lux)/efficacy
 	return '%.3f'%(watts*(10**3))
